@@ -1,7 +1,11 @@
 <template>
     <div class="takelist">
-        <div class="takelistshow">
-            <div class="takeitem" v-for="(item,index) in list" v-bind:key="index">
+        <div class="takelistshow" id="TakeListShow">
+            <div class="takelisttitle">
+                {{ list.title }}
+                (共{{ list.item.length }}项)
+            </div>
+            <div class="takeitem" v-for="(item,index) in list.item" v-bind:key="index">
                 <div class="takeitemtext">
                     {{ item }}
                 </div>
@@ -17,7 +21,7 @@
         </div>
         <div class="takelistadd">
             <span v-for="item in selectlist" v-bind:key="item">
-                <button class="select"  @click="additem(item)">
+                <button class="select"  @click="addItem(item)">
                     {{ item }}
                 </button>
             </span>
@@ -29,17 +33,27 @@
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             </button>
         </div>
+        <div class="takelistadd">
+            <button class="edit" @click="ListScreenShots">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            </button>
+            <button class="del" @click="delList()">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
+        </div>
     </div>
   </template>
   
   <script>
+  import html2canvas from 'html2canvas'
   export default {
     name: 'TakeList',
     data(){
           return{
-            list:[
-                '手机'
-            ],
+            list:{
+                title:'日常出行',
+                item:['手机'],
+            },
             selectlist:[
                 '手机','钥匙','身份证','银行卡','充电宝','纸巾','眼镜','笔','U盘'
             ],
@@ -49,33 +63,47 @@
       methods:{
           //删除物品
           delItem:function(e){
-            this.list.splice(e,1)
+            this.list.item.splice(e,1)
           },
           //编辑物品
           editItem:function(e){
             console.log(e)
           },
           addInputItem:function(){
-            this.additem(this.takeAddItemInput)
+            this.addItem(this.takeAddItemInput)
             this.takeAddItemInput = ''
           },
-          additem:function(e){
+          addItem:function(e){
             if(e !== '') {
-                this.list.push(e)
+                this.list.item.push(e)
             }
             else{
                 alert('物品名称为空,请输入.')
             }
-          }
+          },
+          ListScreenShots:function(){
+            html2canvas(document.querySelector("#TakeListShow")).then(canvas => {
+                document.body.appendChild(canvas)
+            });
+          },
       }
   }
   </script>
   
   <style scoped>
+    .takelisttitle{
+        font-size: 1.3em;
+        font-weight: 600;
+        margin: 0.5em 0.2em;
+    }
+    .takelisttitle::before{
+        content: '📝';
+        margin-right: 0.2em;
+    }
     .takelistshow{
         width: 100%;
         border: 2px #cbcbcb solid;
-        border-radius: 10px;
+        border-radius: 5px;
         padding: 0em 0.5em;
     }
     .takeitem{
@@ -100,7 +128,7 @@
     .takeitembtn{
         display: none;
         border: 0px;
-        border-radius: 10px;
+        border-radius: 5px;
         color: #fff;
         transition: .1s;
         margin: 0em 0.2em;
@@ -147,7 +175,7 @@
     .takelistadd{
         width: 100%;
         border: 2px #cbcbcb solid;
-        border-radius: 10px;
+        border-radius: 5px;
         padding: 0.5em 0.5em;
         margin-top: 0.5em;
     }

@@ -16,7 +16,6 @@ export default {
         return{
             linkList:[
               {name:'导航页',url:'https://wulvxinchen.cn/'},
-              {name:'博客',url:'https://wulvxinchen.cn/blog'},
               {name:'工具集',url:'https://my.wulvxinchen.cn/tools/'}
             ]
         }

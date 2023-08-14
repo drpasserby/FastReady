@@ -101,7 +101,7 @@
         margin-right: 0.2em;
     }
     .takelistshow{
-        width: 100%;
+        /* width: 100%; */
         border: 2px #cbcbcb solid;
         border-radius: 5px;
         padding: 0em 0.5em;
@@ -173,7 +173,7 @@
         background-color: #3a8ee6;
     }
     .takelistadd{
-        width: 100%;
+        /* width: 100%; */
         border: 2px #cbcbcb solid;
         border-radius: 5px;
         padding: 0.5em 0.5em;

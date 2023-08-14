@@ -18,6 +18,9 @@
                     </button>
                 </span>
             </div>
+            <div class="design" v-show="isDesign">
+                {{ designTitle }}
+            </div>
         </div>
         <div class="takelistadd">
             <span v-for="item in selectlist" v-bind:key="item">
@@ -43,8 +46,7 @@
         </div>
     </div>
     <div class="shotPicData" v-if="shotPicData != null">
-        <button class="mybtn del" style="margin-bottom: 1em;"
-        @click="closeScreenShots()">
+        <button class="mybtn del" style="margin-bottom: 1em;" @click="closeScreenShots()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
         <br>
@@ -68,6 +70,8 @@
             ],
             takeAddItemInput:'',
             shotPicData: null,
+            isDesign:false,
+            designTitle: '随心而遇 Design By LvXnCehn',
           }
       },
     methods:{
@@ -92,16 +96,20 @@
             }
         },
         listScreenShots:function(){
-            html2canvas(document.querySelector("#TakeListShow"),
-            {
-                crossorigin : "anonymous",
-                backgroundColor: null,
-                useCORS: true, // 如果截图的内容里有图片,可能会有跨域的情况,加上这个参数,解决文件跨域问题
-            }).then(canvas => {
-                this.shotPicData = canvas.toDataURL('image/png')
-            });
+            this.isDesign = true
+            setTimeout(() => {
+                html2canvas(document.querySelector("#TakeListShow"),
+                {
+                    crossorigin : "anonymous",
+                    backgroundColor: null,
+                    useCORS: true, // 如果截图的内容里有图片,可能会有跨域的情况,加上这个参数,解决文件跨域问题
+                }).then(canvas => {
+                    this.shotPicData = canvas.toDataURL('image/png')
+                });
+            }, 5);
         },
         closeScreenShots:function(){
+            this.isDesign = false
             this.shotPicData = null
         },
       }
@@ -210,6 +218,11 @@
         outline: 0;
         padding: 0 15px;
         width: 90%;
+    }
+    .design{
+        margin: 0.5em 0.2em;
+        font-size: 0.6em;
+        color: #bbb;
     }
   </style>
   

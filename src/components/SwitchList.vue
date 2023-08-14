@@ -1,7 +1,7 @@
 <template>
     <div class="switchlist">
         <button v-for="(item,index) in takeList" v-bind:key="index" class="changeBtn" 
-        @click="changeTo()" @dblclick="editListName(index)">
+        @click="changeTo(index)" @dblclick="editListName(index)">
           {{ item }}
       </button>
         <button class="addBtn changeBtn" @click="isNewShow=!isNewShow">
@@ -16,7 +16,7 @@
             <input type="text" placeholder="输入新列表名称" 
                 v-model="newlistname" @keyup.enter="addNewList(this.newlistname)" />
         </div>
-        <div class="newlistinput" v-if="isEditShow!=0">
+        <div class="newlistinput" v-if="isEditShow!=-1">
             <input type="text" placeholder="输入修改的列表名称" 
                 v-model="newlistname" @keyup.enter="editListNameGit()" />
         </div>
@@ -32,7 +32,7 @@
                 '日常出行','列表示例2','列表示例3','列表示例4','列表示例5','列表示例6'
               ],
               isNewShow:false,
-              isEditShow:0,
+              isEditShow:-1,
               newlistname:'',
           }
       },
@@ -49,7 +49,7 @@
             }
         },
         //切换列表
-        changeto:function(e){
+        changeTo:function(e){
             console.log(e)
         },
         //双击编辑列表
@@ -61,7 +61,7 @@
         editListNameGit:function(e){
             this.takeList[this.isEditShow] = this.newlistname
             this.newlistname = ''
-            this.isEditShow = 0
+            this.isEditShow = -1
         }
       }
   }

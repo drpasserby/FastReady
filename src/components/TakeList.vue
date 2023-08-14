@@ -21,7 +21,7 @@
         </div>
         <div class="takelistadd">
             <span v-for="item in selectlist" v-bind:key="item">
-                <button class="select"  @click="addItem(item)">
+                <button class="mybtn select"  @click="addItem(item)">
                     {{ item }}
                 </button>
             </span>
@@ -43,7 +43,8 @@
         </div>
     </div>
     <div class="shotPicData" v-if="shotPicData != null">
-        <button class="mybtn del" @click="closeScreenShots()">
+        <button class="mybtn del" style="margin-bottom: 1em;"
+        @click="closeScreenShots()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
         <br>
@@ -171,10 +172,6 @@
         background-color: #5cb860;
     }
     .select{
-        border: 0px;
-        border-radius: 5px;
-        color: #fff;
-        transition: .1s;
         margin: 0.2em 0.2em;
         padding: 0.4em 0.8em;
         font-size: 0.9em;

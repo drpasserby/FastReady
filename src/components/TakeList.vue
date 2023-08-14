@@ -1,5 +1,5 @@
 <template>
-    <div class="takelist">
+    <div class="takelist" v-show="shotPicData === null">
         <div class="takelistshow" id="TakeListShow">
             <div class="takelisttitle">
                 {{ list.title }}
@@ -10,10 +10,10 @@
                     {{ item }}
                 </div>
                 <span class="takeitembtnspan">
-                    <button class="takeitembtn edit" @click="editItem(index)">
+                    <button class="mybtn takeitembtn edit" @click="editItem(index)">
                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                     </button>
-                    <button class="takeitembtn del" @click="delItem(index)">
+                    <button class="mybtn takeitembtn del" @click="delItem(index)">
                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                     </button>
                 </span>
@@ -29,23 +29,25 @@
         <div class="takelistadd">
             <input type="text" placeholder="输入物品" class="takeiteminput"
                 v-model="takeAddItemInput" @keyup.enter="addInputItem()"/>
-            <button class="takeitembtn add" @click="addInputItem()">
+            <button class="mybtn takeitembtn add" @click="addInputItem()">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             </button>
         </div>
         <div class="takelistadd">
-            <button class="edit" @click="ListScreenShots">
+            <button class="mybtn edit" @click="listScreenShots">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             </button>
-            <button class="del" @click="delList()">
+            <button class="mybtn del" @click="delList()">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </button>
         </div>
     </div>
+   
   </template>
   
   <script>
-  import html2canvas from 'html2canvas'
+  import html2canvas from 'html2canvas' // 引入html2canvas插件
+
   export default {
     name: 'TakeList',
     data(){
@@ -57,40 +59,49 @@
             selectlist:[
                 '手机','钥匙','身份证','银行卡','充电宝','纸巾','眼镜','笔','U盘'
             ],
-            takeAddItemInput:''
+            takeAddItemInput:'',
+            shotPicData: null,
           }
       },
-      methods:{
-          //删除物品
-          delItem:function(e){
+    methods:{
+        //删除物品
+        delItem:function(e){
             this.list.item.splice(e,1)
-          },
-          //编辑物品
-          editItem:function(e){
+        },
+        //编辑物品
+        editItem:function(e){
             console.log(e)
-          },
-          addInputItem:function(){
+        },
+        addInputItem:function(){
             this.addItem(this.takeAddItemInput)
             this.takeAddItemInput = ''
-          },
-          addItem:function(e){
+        },
+        addItem:function(e){
             if(e !== '') {
                 this.list.item.push(e)
             }
             else{
                 alert('物品名称为空,请输入.')
             }
-          },
-          ListScreenShots:function(){
-            html2canvas(document.querySelector("#TakeListShow")).then(canvas => {
-                document.body.appendChild(canvas)
-            });
-          },
+        },
+        
+        closeScreenShots:function(){
+            this.shotPicData = null
+        },
       }
   }
   </script>
   
   <style scoped>
+    .mybtn{
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        transition: .1s;
+        margin: 0em 0.2em;
+        padding: 0.5em 1em;
+        font-size: 0.5em;
+    }
     .takelisttitle{
         font-size: 1.3em;
         font-weight: 600;
@@ -127,13 +138,7 @@
     }
     .takeitembtn{
         display: none;
-        border: 0px;
-        border-radius: 5px;
-        color: #fff;
-        transition: .1s;
-        margin: 0em 0.2em;
-        padding: 0.5em 1em;
-        font-size: 0.5em;
+        
     }
     .takeitem:hover .takeitembtn{
         display: inline-block;

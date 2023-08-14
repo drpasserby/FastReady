@@ -26,9 +26,9 @@ export default {
 
 <style scoped>
   .maintitle{
-    width: 100%;
+    /* width: 100%; */
     border: 2px #cbcbcb solid;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 2em;
   }
   .link{

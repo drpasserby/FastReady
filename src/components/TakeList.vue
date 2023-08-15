@@ -225,6 +225,9 @@
         font-size: 0.6em;
         color: #bbb;
     }
-    
+    .showPicClass{
+        max-width: 100%;
+        max-height: 100%;
+    }
   </style>
   

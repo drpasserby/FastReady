@@ -118,6 +118,7 @@
   
   <style scoped>
     .mybtn{
+        color: #000;
         border: 0px;
         border-radius: 5px;
         color: #fff;
@@ -139,6 +140,8 @@
         /* width: 100%; */
         background-color: #fff;
         border: 2px #cbcbcb solid;
+        color: #000;
+        font-weight: 400;
         border-radius: 5px;
         padding: 0em 0.5em;
     }

@@ -62,11 +62,11 @@
     data(){
           return{
             list:{
-                title:'日常出行',
-                item:['手机'],
+                title:"日常出行",
+                item:["手机"],
             },
             selectlist:[
-                '手机','钥匙','身份证','银行卡','充电宝','纸巾','眼镜','笔','U盘'
+                "手机","钥匙","身份证","银行卡","充电宝","纸巾","眼镜","笔","U盘"
             ],
             takeAddItemInput:'',
             shotPicData: null,
@@ -112,7 +112,15 @@
             this.isDesign = false
             this.shotPicData = null
         },
-      }
+      },
+      Create(){
+          if(localStorage.getItem('TakeList') != null){
+              this.list = JSON.parse(localStorage.getItem('TakeList'))
+          }
+          else{
+              localStorage.setItem('TakeList',JSON.stringify(this.list))
+          }
+      },
   }
   </script>
   

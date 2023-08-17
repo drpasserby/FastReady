@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="takelistadd">
-            <span v-for="item in selectlist" v-bind:key="item">
+            <span v-for="item in selectList" v-bind:key="item">
                 <button class="mybtn select"  @click="addItem(item)">
                     {{ item }}
                 </button>
@@ -65,7 +65,7 @@
                 title:"日常出行",
                 item:["手机"],
             },
-            selectlist:[
+            selectList:[
                 "手机","钥匙","身份证","银行卡","充电宝","纸巾","眼镜","笔","U盘"
             ],
             takeAddItemInput:'',
@@ -111,6 +111,19 @@
         closeScreenShots:function(){
             this.isDesign = false
             this.shotPicData = null
+        },
+        checkList:function(){
+            if(this.list.title != null || this.list.title != ''){
+                if(this.list.selectList != null){
+                    if(this.list.takeListList != null){
+                        return true
+                    }
+                    else{
+                        alert('列表格式错误')
+                    }
+                }
+            }
+
         },
       },
       Create(){

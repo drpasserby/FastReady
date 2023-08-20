@@ -116,8 +116,19 @@
             this.shotPicData = null
         },
         exportList:function(){
-                var blob = new Blob([JSON.stringify(this.list)], {type: "text/plain;charset=utf-8"});
-                saveAs(blob, this.list.title + ".json");
+            var data=this.list//处理得到的json字符串
+            var filename = 'export.json'//json文件名
+            if(typeof data === 'object'){
+                data = JSON.stringify(data, undefined, 4)
+            }
+            var blob = new Blob([data], {type: 'text/json'}),
+            e = document.createEvent('MouseEvents'),
+            a = document.createElement('a')
+            a.download = filename
+            a.href = window.URL.createObjectURL(blob)
+            a.dataset.downloadurl = ['text/json', a.download, a.href].join(':')
+            e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+            a.dispatchEvent(e)
         },
         checkList:function(){
             if(this.list.title != null || this.list.title != ''){

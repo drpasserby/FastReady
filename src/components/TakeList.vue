@@ -141,16 +141,18 @@
                     }
                 }
             }
-
         },
+        readOrCreateList:function(){
+            if(localStorage.getItem('TakeList') != null){
+              this.list = JSON.parse(localStorage.getItem('TakeList'))
+            }
+            else{
+                localStorage.setItem('TakeList',JSON.stringify(this.list))
+            }
+        }
       },
       Create(){
-          if(localStorage.getItem('TakeList') != null){
-              this.list = JSON.parse(localStorage.getItem('TakeList'))
-          }
-          else{
-              localStorage.setItem('TakeList',JSON.stringify(this.list))
-          }
+          this.readOrCreateList()
       },
   }
   </script>

@@ -151,7 +151,7 @@
             }
         }
       },
-      Create(){
+      beforeMount(){
           this.readOrCreateList()
       },
   }

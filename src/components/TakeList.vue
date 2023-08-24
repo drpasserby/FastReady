@@ -2,10 +2,10 @@
     <div class="takelist" v-show="shotPicData === null">
         <div class="takelistshow" id="TakeListShow">
             <div class="takelisttitle">
-                {{ list.takeListList[0].listTitle }}
-                (共{{ list.takeListList[0].listItem.length }}项)
+                {{ list.takeListList[whichList].listTitle }}
+                (共{{ list.takeListList[whichList].listItem.length }}项)
             </div>
-            <div class="takeitem" v-for="(item,index) in list.takeListList[0].listItem" v-bind:key="index">
+            <div class="takeitem" v-for="(item,index) in list.takeListList[whichList].listItem" v-bind:key="index">
                 <div class="takeitemtext">
                     {{ item }}
                 </div>
@@ -66,9 +66,7 @@
     data(){
           return{
             list:{},
-            selectList:[
-                "手机","钥匙","身份证","银行卡","充电宝","纸巾","眼镜","笔","U盘"
-            ],
+            whichList:0,
             takeAddItemInput:'',
             shotPicData: null,
             isDesign:false,
@@ -78,7 +76,7 @@
     methods:{
         //删除物品
         delItem:function(e){
-            this.list.item.splice(e,1)
+            this.list.takeListList[this.whichList].listItem.splice(e,1)
         },
         //编辑物品
         editItem:function(e){
@@ -90,7 +88,7 @@
         },
         addItem:function(e){
             if(e !== '') {
-                this.list.item.push(e)
+                this.list.takeListList[this.whichList].listItem.push(e)
             }
             else{
                 alert('物品名称为空,请输入.')

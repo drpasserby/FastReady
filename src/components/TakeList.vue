@@ -2,10 +2,10 @@
     <div class="takelist" v-show="shotPicData === null">
         <div class="takelistshow" id="TakeListShow">
             <div class="takelisttitle">
-                {{ list.title }}
-                (共{{ list.item.length }}项)
+                {{ list.takeListList[0].listTitle }}
+                (共{{ list.takeListList[0].listItem.length }}项)
             </div>
-            <div class="takeitem" v-for="(item,index) in list.item" v-bind:key="index">
+            <div class="takeitem" v-for="(item,index) in list.takeListList[0].listItem" v-bind:key="index">
                 <div class="takeitemtext">
                     {{ item }}
                 </div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="takelistadd">
-            <span v-for="item in selectList" v-bind:key="item">
+            <span v-for="item in list.selectList" v-bind:key="item">
                 <button class="mybtn select"  @click="addItem(item)">
                     {{ item }}
                 </button>
@@ -59,15 +59,13 @@
   
   <script>
   import html2canvas from 'html2canvas' // 引入html2canvas插件
+  import axios from 'axios' // 引入axios插件
 
   export default {
     name: 'TakeList',
     data(){
           return{
-            list:{
-                title:"日常出行",
-                item:["手机"],
-            },
+            list:{},
             selectList:[
                 "手机","钥匙","身份证","银行卡","充电宝","纸巾","眼镜","笔","U盘"
             ],
@@ -131,15 +129,18 @@
             a.dispatchEvent(e)
         },
         checkList:function(){
-            if(this.list.title != null || this.list.title != ''){
-                if(this.list.selectList != null){
-                    if(this.list.takeListList != null){
-                        return true
-                    }
-                    else{
-                        alert('列表格式错误')
-                    }
-                }
+            if(this.list.selectList != null && this.list.takeListList != null){
+                console.log('选择列表或者清单列表正确')
+                return true
+            }
+            else{
+                alert('选择列表或者清单列表错误，数据出错.')
+                return false
+            }
+        },
+        updateListToLocal:function(){
+            if(this.checkList()){
+                localStorage.setItem('TakeList',JSON.stringify(this.list))
             }
         },
         readOrCreateList:function(){

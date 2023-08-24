@@ -148,7 +148,10 @@
               this.list = JSON.parse(localStorage.getItem('TakeList'))
             }
             else{
-                localStorage.setItem('TakeList',JSON.stringify(this.list))
+                axios.get("https://my.wulvxinchen.cn/fastready/example.json").then((response) => {
+                    localStorage.setItem('TakeList',JSON.stringify(response.data))
+                })
+                
             }
         }
       },

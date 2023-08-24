@@ -77,6 +77,7 @@
         //删除物品
         delItem:function(e){
             this.list.takeListList[this.whichList].listItem.splice(e,1)
+            this.updateListToLocal()
         },
         //编辑物品
         editItem:function(e){
@@ -89,6 +90,7 @@
         addItem:function(e){
             if(e !== '') {
                 this.list.takeListList[this.whichList].listItem.push(e)
+                this.updateListToLocal()
             }
             else{
                 alert('物品名称为空,请输入.')
@@ -137,9 +139,7 @@
             }
         },
         updateListToLocal:function(){
-            if(this.checkList()){
                 localStorage.setItem('TakeList',JSON.stringify(this.list))
-            }
         },
         readOrCreateList:function(){
             if(localStorage.getItem('TakeList') != null){

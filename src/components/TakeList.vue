@@ -58,6 +58,7 @@
   </template>
   
   <script>
+  import eventBus from '../eventbus' // 引入eventBus插件
   import html2canvas from 'html2canvas' // 引入html2canvas插件
   import axios from 'axios' // 引入axios插件
 
@@ -83,10 +84,12 @@
         editItem:function(e){
             console.log(e)
         },
+        //
         addInputItem:function(){
             this.addItem(this.takeAddItemInput)
             this.takeAddItemInput = ''
         },
+        //添加物品
         addItem:function(e){
             if(e !== '') {
                 this.list.takeListList[this.whichList].listItem.push(e)
@@ -96,6 +99,7 @@
                 alert('物品名称为空,请输入.')
             }
         },
+        //截图列表
         listScreenShots:function(){
             this.isDesign = true
             setTimeout(() => {
@@ -109,10 +113,12 @@
                 });
             }, 5);
         },
+        //关闭截图
         closeScreenShots:function(){
             this.isDesign = false
             this.shotPicData = null
         },
+        //导出json文件
         exportList:function(){
             if(confirm('是否导出数据为JSON文件?')){
                 var data=this.list//处理得到的json字符串
@@ -130,6 +136,7 @@
                 a.dispatchEvent(e)
             }
         },
+        //检查列表完整性
         checkList:function(){
             if(this.list.selectList != null && this.list.takeListList != null){
                 console.log('选择列表或者清单列表正确')
@@ -140,9 +147,11 @@
                 return false
             }
         },
+        //更新列表到本地
         updateListToLocal:function(){
                 localStorage.setItem('TakeList',JSON.stringify(this.list))
         },
+        //读取或创建列表
         readOrCreateList:function(){
             if(localStorage.getItem('TakeList') != null){
               this.list = JSON.parse(localStorage.getItem('TakeList'))
@@ -151,7 +160,6 @@
                 axios.get("https://my.wulvxinchen.cn/fastready/example.json").then((response) => {
                     localStorage.setItem('TakeList',JSON.stringify(response.data))
                 })
-                
             }
         }
       },

@@ -7,7 +7,6 @@ import TakeList from './components/TakeList.vue'
 <template>
   <div class="mainapp">
     <MainTitle />
-    <SwitchList />
     <TakeList />
   </div>
 </template>

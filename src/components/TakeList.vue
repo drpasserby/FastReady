@@ -132,8 +132,10 @@
         //删除列表
         delList:function(e){
             if(confirm('是否删除该列表?')){
-                this.list.takeListList.splice(e,1)
-                this.updateListToLocal()
+                if(confirm('删除后无法恢复,是否继续?') && this.list.takeListList.length > 1){
+                    this.list.takeListList.splice(e,1)
+                    this.updateListToLocal()
+                }
             }
         },
         //删除物品

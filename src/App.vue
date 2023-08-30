@@ -1,6 +1,5 @@
 <script setup>
 import MainTitle from './components/MainTitle.vue'
-import SwitchList from './components/SwitchList.vue'
 import TakeList from './components/TakeList.vue'
 </script>
 

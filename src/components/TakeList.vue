@@ -63,7 +63,7 @@
             <button class="mybtn edit" @click="listScreenShots">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             </button>
-            <button class="mybtn del" @click="delList()">
+            <button class="mybtn del" @click="delList(whichList)">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </button>
             <button class="mybtn export" @click="exportList()">
@@ -128,6 +128,13 @@
             this.newlistname = ''
             this.isEditShow = -1
             this.updateListToLocal()
+        },
+        //删除列表
+        delList:function(e){
+            if(confirm('是否删除该列表?')){
+                this.list.takeListList.splice(e,1)
+                this.updateListToLocal()
+            }
         },
         //删除物品
         delItem:function(e){
@@ -217,6 +224,7 @@
             else{
                 axios.get("https://my.wulvxinchen.cn/fastready/example.json").then((response) => {
                     localStorage.setItem('TakeList',JSON.stringify(response.data))
+                    window.location.reload()
                 })
             }
         }

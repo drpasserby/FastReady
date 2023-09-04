@@ -12,7 +12,8 @@ import TakeList from './components/TakeList.vue'
 
 <style scoped>
 .mainapp{
-  margin: 0.5em auto;
-  padding: 0.5em;
+  width: 100%;
+  margin: .5em auto;
+  padding: .5em;
 }
 </style>

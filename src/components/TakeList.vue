@@ -16,10 +16,6 @@
             <input type="text" placeholder="输入新列表名称" 
                 v-model="newlistname" @keyup.enter="addNewList(this.newlistname)" />
         </div>
-        <div class="newlistinput" v-if="isEditShow!=-1">
-            <input type="text" placeholder="输入修改的列表名称" 
-                v-model="newlistname" @keyup.enter="editListNameGit()" />
-        </div>
     </div>
 
     <div class="takelist" v-show="shotPicData === null">
@@ -63,6 +59,9 @@
             <button class="mybtn edit" @click="listScreenShots">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             </button>
+            <button class="mybtn edit" @click="editList(whichList)">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </button>
             <button class="mybtn del" @click="delList(whichList)">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </button>
@@ -95,7 +94,7 @@
             shotPicData: null,
             isDesign:false,
             isNewShow:false,
-            isEditShow:-1,
+            // isEditShow:-1,
             designTitle: '随心而遇 Design By LvXnCehn',
           }
       },
@@ -123,12 +122,12 @@
             this.newlistname = this.list.takeListList[e].listTitle
         },
         //编辑列表提交
-        editListNameGit:function(e){
-            this.list.takeListList[this.isEditShow].listTitle = this.newlistname
-            this.newlistname = ''
-            this.isEditShow = -1
-            this.updateListToLocal()
-        },
+        // editListNameGit:function(e){
+        //     this.list.takeListList[this.isEditShow].listTitle = this.newlistname
+        //     this.newlistname = ''
+        //     this.isEditShow = -1
+        //     this.updateListToLocal()
+        // },
         //删除列表
         delList:function(e){
             if(confirm('是否删除该列表?')){

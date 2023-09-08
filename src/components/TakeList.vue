@@ -1,4 +1,9 @@
 <template>
+    <div class="window" v-if="isShowFloatWin">
+        <h2>{{ floatWinTitle }}</h2>
+        <input v-model="floatWinInput" />
+        <button @click="getFloatWinInput">确认</button>
+    </div>
     <div class="switchlist">
         <button v-for="(item,index) in list.takeListList" v-bind:key="index" class="changeBtn" 
         @click="changeTo(index)" @dblclick="editListName(index)">
@@ -87,6 +92,11 @@
     name: 'TakeList',
     data(){
           return{
+            //浮窗输入框设置
+            isShowFloatWin: false,
+            floatWinTitle: '测试标题',
+            floatWinInput: '',
+
             list:{},
             whichList:0,
             newlistname:'',
@@ -99,6 +109,16 @@
           }
       },
     methods:{
+        openFloatWin(e){
+            this.floatWinTitle = e
+            this.isShowFloatWin = true
+        },
+        getFloatWinInput(e){
+            console.log(e)
+            this.floatWinInput = e
+            this.isShowFloatWin = false
+            return this.floatWinInput
+        },
         //新增列表
         addNewList:function(e){
             let nowtime = new Date()

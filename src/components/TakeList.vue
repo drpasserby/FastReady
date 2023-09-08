@@ -1,6 +1,6 @@
 <template>
     <div class="window" v-if="isShowFloatWin">
-        <h2>{{ floatWinTitle }}</h2>
+        <h3>{{ floatWinTitle }}</h3>
         <input v-model="floatWinInput" />
         <button @click="getFloatWinInput">确认</button>
     </div>
@@ -138,8 +138,10 @@
         },
         //双击编辑列表
         editListName:function(e){
-            this.isEditShow = e
-            this.newlistname = this.list.takeListList[e].listTitle
+            openFloatWin('输入['+item.listTitle+']的新名称')
+
+            // this.isEditShow = e
+            // this.newlistname = this.list.takeListList[e].listTitle
         },
         //编辑列表提交
         // editListNameGit:function(e){

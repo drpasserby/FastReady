@@ -257,6 +257,26 @@
   </script>
   
   <style scoped>
+    .window{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+    .window button{
+        margin: 0 .5em;
+        padding: .3em .8em;
+        font-weight: 500;
+        color: #fff;
+        background-color: #409eff;
+    }
+    .window button:hover {
+        background-color: #3a8ee6;
+    }
     .switchlist{
         margin: 1em 0;
     }

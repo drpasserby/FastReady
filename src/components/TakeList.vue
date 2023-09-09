@@ -130,10 +130,13 @@
         },
         //编辑列表提交
         editListNameGit:function(e){
-            if(this.floatWinInput != null){
+            if(this.floatWinInput != ''){
                 this.list.takeListList[this.whichList].listTitle = this.floatWinInput
                 this.isShowFloatWin = 0
                 this.updateListToLocal()
+            }
+            else{
+                alert('列表名称为空,请输入.')
             }
         },
         //删除列表
@@ -258,7 +261,7 @@
     }
     .window button{
         border-radius: 4px;
-        margin: 0 .5em;
+        margin: .5em .5em;
         padding: .3em .8em;
         font-weight: 500;
         color: #fff;

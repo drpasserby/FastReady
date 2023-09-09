@@ -1,12 +1,13 @@
 <template>
-    <div class="window" v-if="isShowFloatWin">
+    <div class="window" v-if="isShowFloatWin != 0">
         <h3>{{ floatWinTitle }}</h3>
         <input v-model="floatWinInput" />
-        <button @click="getFloatWinInput">确认</button>
+        <button v-if="isShowFloatWin == 1" @click="editListNameGit">确认</button>
+        <button v-if="isShowFloatWin == 2" >确认</button>
     </div>
     <div class="switchlist">
         <button v-for="(item,index) in list.takeListList" v-bind:key="index" class="changeBtn" 
-        @click="changeTo(index)" @dblclick="editListName(index)">
+        @click="changeTo(index)">
           {{ item.listTitle }}
       </button>
         <button class="addBtn changeBtn" @click="isNewShow=!isNewShow">
@@ -64,7 +65,7 @@
             <button class="mybtn edit" @click="listScreenShots">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             </button>
-            <button class="mybtn edit" @click="editList(whichList)">
+            <button class="mybtn edit" @click="editListName(whichList)">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
             </button>
             <button class="mybtn del" @click="delList(whichList)">
@@ -93,7 +94,7 @@
     data(){
           return{
             //浮窗输入框设置
-            isShowFloatWin: false,
+            isShowFloatWin: 0,
             floatWinTitle: '测试标题',
             floatWinInput: '',
 
@@ -109,15 +110,11 @@
           }
       },
     methods:{
-        openFloatWin(e){
+        //打开浮动窗口
+        openFloatWin(e,a){
+            this.floatWinInput = ''
             this.floatWinTitle = e
-            this.isShowFloatWin = true
-        },
-        getFloatWinInput(e){
-            console.log(e)
-            this.floatWinInput = e
-            this.isShowFloatWin = false
-            return this.floatWinInput
+            this.isShowFloatWin = a
         },
         //新增列表
         addNewList:function(e){
@@ -138,18 +135,21 @@
         },
         //双击编辑列表
         editListName:function(e){
-            openFloatWin('输入['+item.listTitle+']的新名称')
-
+            this.openFloatWin('输入'+this.list.takeListList[e].listTitle+'的新名称',"1")
+            
             // this.isEditShow = e
             // this.newlistname = this.list.takeListList[e].listTitle
         },
         //编辑列表提交
-        // editListNameGit:function(e){
-        //     this.list.takeListList[this.isEditShow].listTitle = this.newlistname
-        //     this.newlistname = ''
-        //     this.isEditShow = -1
-        //     this.updateListToLocal()
-        // },
+        editListNameGit:function(e){
+            if(this.floatWinInput != null){
+                this.list.takeListList[this.whichList].listTitle = this.floatWinInput
+                // this.newlistname = ''
+                // this.isEditShow = -1
+                this.isShowFloatWin = 0
+                this.updateListToLocal()
+            }
+        },
         //删除列表
         delList:function(e){
             if(confirm('是否删除该列表?')){

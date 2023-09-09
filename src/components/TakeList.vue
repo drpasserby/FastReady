@@ -8,9 +8,9 @@
     </div>
     <div class="switchlist">
         <button v-for="(item,index) in list.takeListList" v-bind:key="index" class="changeBtn" 
-        @click="changeTo(index)">
-          {{ item.listTitle }}
-      </button>
+            @click="changeTo(index)">
+                {{ item.listTitle }}
+        </button>
         <button class="addBtn changeBtn" @click="addNewList">+ 新增</button>
     </div>
 
@@ -126,7 +126,7 @@
         },
         //编辑列表按钮
         editListName:function(e){
-            this.openFloatWin('输入'+this.list.takeListList[e].listTitle+'的新名称',"1")
+            this.openFloatWin('输入['+this.list.takeListList[e].listTitle+']的新名称',"1")
         },
         //编辑列表提交
         editListNameGit:function(e){

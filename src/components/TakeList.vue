@@ -3,25 +3,15 @@
         <h3>{{ floatWinTitle }}</h3>
         <input v-model="floatWinInput" />
         <button v-if="isShowFloatWin == 1" @click="editListNameGit">确认</button>
-        <button v-if="isShowFloatWin == 2" >确认</button>
+        <button v-if="isShowFloatWin == 2" @click="addNewListGit">确认</button>
+        <button @click="isShowFloatWin = 0">取消</button>
     </div>
     <div class="switchlist">
         <button v-for="(item,index) in list.takeListList" v-bind:key="index" class="changeBtn" 
         @click="changeTo(index)">
           {{ item.listTitle }}
       </button>
-        <button class="addBtn changeBtn" @click="isNewShow=!isNewShow">
-          <span v-if="!isNewShow">
-            + 新增
-          </span>
-          <span v-else>
-            - 取消
-          </span>
-        </button>
-        <div class="newlistinput" v-if="isNewShow">
-            <input type="text" placeholder="输入新列表名称" 
-                v-model="newlistname" @keyup.enter="addNewList(this.newlistname)" />
-        </div>
+        <button class="addBtn changeBtn" @click="addNewList">+ 新增</button>
     </div>
 
     <div class="takelist" v-show="shotPicData === null">
@@ -100,11 +90,9 @@
 
             list:{},
             whichList:0,
-            newlistname:'',
             takeAddItemInput:'',
             shotPicData: null,
             isDesign:false,
-            isNewShow:false,
 
             designTitle: '随心而遇 Design By LvXnCehn',
           }
@@ -116,34 +104,34 @@
             this.floatWinTitle = e
             this.isShowFloatWin = a
         },
-        //新增列表
+        //新增列表按钮
         addNewList:function(e){
+            this.openFloatWin('输入新列表名称',"2")
+        },
+        //新增列表提交
+        addNewListGit:function(e){
             let nowtime = new Date()
-            if(e !== '') {
+            if(this.floatWinInput !== '') {
                 this.list.takeListList.push({
-                    listTitle:e,
+                    listTitle:this.floatWinInput,
                     listItem:[],
                     lastTime: nowtime.toLocaleDateString() + ' ' + nowtime.toLocaleTimeString()
                 })
-                this.newlistname = ''
-                this.isNewShow = false
+                this.isShowFloatWin = 0
                 this.updateListToLocal()
             }
             else{
                 alert('列表名称为空,请输入.')
             }
         },
-        //双击编辑列表
+        //编辑列表按钮
         editListName:function(e){
             this.openFloatWin('输入'+this.list.takeListList[e].listTitle+'的新名称',"1")
-            
         },
         //编辑列表提交
         editListNameGit:function(e){
             if(this.floatWinInput != null){
                 this.list.takeListList[this.whichList].listTitle = this.floatWinInput
-                // this.newlistname = ''
-
                 this.isShowFloatWin = 0
                 this.updateListToLocal()
             }

@@ -105,7 +105,7 @@
             shotPicData: null,
             isDesign:false,
             isNewShow:false,
-            // isEditShow:-1,
+
             designTitle: '随心而遇 Design By LvXnCehn',
           }
       },
@@ -137,15 +137,13 @@
         editListName:function(e){
             this.openFloatWin('输入'+this.list.takeListList[e].listTitle+'的新名称',"1")
             
-            // this.isEditShow = e
-            // this.newlistname = this.list.takeListList[e].listTitle
         },
         //编辑列表提交
         editListNameGit:function(e){
             if(this.floatWinInput != null){
                 this.list.takeListList[this.whichList].listTitle = this.floatWinInput
                 // this.newlistname = ''
-                // this.isEditShow = -1
+
                 this.isShowFloatWin = 0
                 this.updateListToLocal()
             }

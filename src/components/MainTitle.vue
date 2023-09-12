@@ -1,6 +1,6 @@
 <template>
   <div class="maintitle">
-    <h1>随心而遇</h1>
+    <h1>✅随心而遇</h1>
     <div class="link">
       <strong>To</strong>
       <a v-for="item in linkList" :key="item.name" :href="item.url" target="_blank" class="link">{{item.name}}</a>

@@ -52,16 +52,16 @@
             </button>
         </div>
         <div class="takelistadd">
-            <button class="mybtn edit" @click="listScreenShots">
+            <button class="mybtn edit" title="截图当前列表" @click="listScreenShots">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             </button>
-            <button class="mybtn edit" @click="editListName(whichList)">
+            <button class="mybtn edit" title="编辑当前列表名称" @click="editListName(whichList)">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
             </button>
-            <button class="mybtn del" @click="delList(whichList)">
+            <button class="mybtn del" title="删除当前列表" @click="delList(whichList)">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </button>
-            <button class="mybtn export" @click="exportList()">
+            <button class="mybtn export" title="导出所有数据" @click="exportList">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
             </button>
         </div>
@@ -385,6 +385,12 @@
     }
     .export:hover{
         background-color: #3a8ee6;
+    }
+    .resetting{
+        background-color: #e6a23c;
+    }
+    .resetting:hover{
+        background-color: #d89f2a;
     }
     .select{
         margin: 0.2em 0.2em;

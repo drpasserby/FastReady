@@ -64,6 +64,9 @@
             <button class="mybtn export" title="导出所有数据" @click="exportList">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
             </button>
+            <button class="mybtn resetting" title="重置所有数据" @click="resetList">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+            </button>
         </div>
     </div>
     <div class="shotPicData" v-if="shotPicData != null">
@@ -218,6 +221,17 @@
                 a.dataset.downloadurl = ['text/json', a.download, a.href].join(':')
                 e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
                 a.dispatchEvent(e)
+            }
+        },
+        //重置所有列表,恢复到初始状态
+        resetList:function(){
+            if(confirm('是否重置所有列表?')){
+                if(confirm('重置后无法恢复,是否继续?')){
+                    axios.get("https://my.wulvxinchen.cn/fastready/example.json").then((response) => {
+                        localStorage.setItem('TakeList',JSON.stringify(response.data))
+                        window.location.reload()
+                    })
+                }
             }
         },
         //检查列表完整性

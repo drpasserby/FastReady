@@ -314,25 +314,6 @@
     .addBtn{
         background-color: #c6eeff;
     }
-
-    .newlistinput{
-        margin: 0.5em 0.2em;
-    }
-    .newlistinput input{
-        background-color: #fff;
-        background-image: none;
-        border-radius: 5px;
-        border: 2px #cbcbcb solid;
-        box-sizing: border-box;
-        color: #2b2b2b;
-        display: inline-block;
-        font-size: inherit;
-        height: 3em;
-        line-height: 2em;
-        outline: 0;
-        padding: 0.5em 1em;
-        width: 100%;
-    }
     button{
         border-radius: 8px;
         border: 1px solid transparent;
@@ -432,21 +413,6 @@
         border-radius: 5px;
         padding: 0.5em 0.5em;
         margin-top: 0.5em;
-    }
-    .takelistadd input{
-        background-color: #fff;
-        background-image: none;
-        border-radius: 4px;
-        border: 0px;
-        box-sizing: border-box;
-        color: #2b2b2b;
-        display: inline-block;
-        font-size: inherit;
-        height: 2em;
-        line-height: 2em;
-        outline: 0;
-        padding: 0 15px;
-        width: 90%;
     }
     .design{
         margin: 0.5em 0.2em;

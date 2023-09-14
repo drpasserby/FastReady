@@ -16,7 +16,7 @@
     </div>
 
     <div class="takelist" v-show="shotPicData === null">
-        <div class="takelistshow" id="TakeListShow">
+        <div class="takelistmodule takelistshow" id="TakeListShow">
             <div class="takelisttitle">📝
                 {{ list.takeListList[whichList].listTitle }}
                 (共{{ list.takeListList[whichList].listItem.length }}项)
@@ -38,7 +38,7 @@
                 {{ designTitle }}
             </div>
         </div>
-        <div class="takelistadd">
+        <div class="takelistmodule">
             <div class="takelisttitle">
                 🧰添加物品
             </div>
@@ -53,7 +53,7 @@
                 </button>
             </span>
         </div>
-        <div class="takelistadd">
+        <div class="takelistmodule">
             <div class="takelisttitle">
                 ⚙️工具栏
             </div>
@@ -345,13 +345,9 @@
         margin: 0.5em 0.2em;
     }
     .takelistshow{
-        /* width: 100%; */
         background-color: #fff;
-        border: 2px #cbcbcb solid;
         color: #000;
         font-weight: 400;
-        border-radius: 5px;
-        padding: 0em 0.5em;
     }
     .takeitem{
         margin: 0.5em auto;
@@ -412,13 +408,6 @@
         padding: 0.5em 0.5em;
         border: 2px #cbcbcb solid;
         border-radius: 5px;
-    }
-    .takelistadd{
-        /* width: 100%; */
-        border: 2px #cbcbcb solid;
-        border-radius: 5px;
-        padding: 0.5em 0.5em;
-        margin-top: 0.5em;
     }
     .design{
         margin: 0.5em 0.2em;

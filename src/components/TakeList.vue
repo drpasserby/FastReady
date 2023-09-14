@@ -407,6 +407,12 @@
     .select:hover{
         background-color: #3a8ee6;
     }
+    .takelistmodule{
+        margin: 0.5em 0;
+        padding: 0.5em 0.5em;
+        border: 2px #cbcbcb solid;
+        border-radius: 5px;
+    }
     .takelistadd{
         /* width: 100%; */
         border: 2px #cbcbcb solid;

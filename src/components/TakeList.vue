@@ -55,16 +55,6 @@
         </div>
         <div class="takelistadd">
             <div class="takelisttitle">
-                🔎自定义添加
-            </div>
-            <input type="text" placeholder="输入物品" class="takeiteminput"
-                v-model="takeAddItemInput" @keyup.enter="addInputItem()"/>
-            <button class="mybtn add" @click="addInputItem()">
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </button>
-        </div>
-        <div class="takelistadd">
-            <div class="takelisttitle">
                 ⚙️工具栏
             </div>
             <button class="mybtn edit" title="截图当前列表" @click="listScreenShots">
@@ -109,7 +99,6 @@
 
             list:{},
             whichList:0,
-            takeAddItemInput:'',
             shotPicData: null,
             isDesign:false,
 
@@ -196,11 +185,6 @@
             else{
                 alert('输入为空,请输入.')
             }
-        },
-        //添加新物品
-        addInputItem:function(){
-            this.addItem(this.takeAddItemInput)
-            this.takeAddItemInput = ''
         },
         //添加物品
         addItem:function(e){
@@ -440,14 +424,6 @@
         background-color: #409eff;
     }
     .select:hover{
-        background-color: #3a8ee6;
-    }
-    .add{
-        display: inline-block;
-        line-height: 2em;
-        background-color: #409eff;
-    }
-    .add:hover{
         background-color: #3a8ee6;
     }
     .takelistadd{

@@ -4,6 +4,7 @@
         <input v-model="floatWinInput" />
         <button v-if="isShowFloatWin == 1" @click="editListNameGit">确认</button>
         <button v-if="isShowFloatWin == 2" @click="addNewListGit">确认</button>
+        <button v-if="isShowFloatWin == 3" @click="addNewItemGit">确认</button>
         <button @click="isShowFloatWin = 0">取消</button>
     </div>
     <div class="switchlist">
@@ -44,6 +45,11 @@
             <span v-for="item in list.selectList" v-bind:key="item">
                 <button class="mybtn select"  @click="addItem(item)">
                     {{ item }}
+                </button>
+            </span>
+            <span>
+                <button class="mybtn select" @click="addNewItem()">
+                    <strong>＋</strong>
                 </button>
             </span>
         </div>
@@ -176,7 +182,22 @@
         editItem:function(e){
             console.log(e)
         },
-        //
+        //添加自定义新物品按钮
+        addNewItem:function(){
+            this.openFloatWin('输入自定义物品的名称',"3")
+        },
+        //添加自定义新物品
+        addNewItemGit:function(){
+            if(this.floatWinInput != ''){
+                this.list.takeListList[this.whichList].listItem.push(this.floatWinInput)
+                this.isShowFloatWin = 0
+                this.updateListToLocal()
+            }
+            else{
+                alert('输入为空,请输入.')
+            }
+        },
+        //添加新物品
         addInputItem:function(){
             this.addItem(this.takeAddItemInput)
             this.takeAddItemInput = ''

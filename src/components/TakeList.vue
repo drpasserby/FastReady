@@ -8,12 +8,20 @@
         <button @click="isShowFloatWin = 0">取消</button>
     </div>
     <div class="switchlist">
-        <button v-for="(item,index) in list.takeListList" v-bind:key="index" class="changeBtn" 
+        <button v-for="(item,index) in list.takeListList" :key="index" class="changeBtn" 
             @click="changeTo(index)">
                 {{ item.listTitle }}
         </button>
         <button class="addBtn changeBtn" @click="addNewList">+ 新增</button>
     </div>
+    <div>
+        <select v-model="watchWhichList">
+            <option v-for="(op,index) in list.takeListList" :key="index" :value="index">
+                {{ op.listTitle }}
+            </option>
+        </select>
+    </div>
+    
 
     <div class="takelist" v-show="shotPicData === null">
         <div class="takelistmodule takelistshow" id="TakeListShow">
@@ -98,6 +106,7 @@
             floatWinInput: '',
 
             list:{},
+            watchWhichList:0,
             whichList:0,
             shotPicData: null,
             isDesign:false,
@@ -278,6 +287,11 @@
       },
         beforeMount(){
             this.readOrCreateList()
+        },
+        watch:{
+            watchWhichList:function(e){
+                this.whichList = e
+            }
         },
   }
   </script>

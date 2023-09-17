@@ -29,6 +29,7 @@ export default {
     border: 2px #cbcbcb solid;
     border-radius: 5px;
     padding: 2em;
+    background-color: #fff;
   }
   .link{
     margin: 0 0.5em;

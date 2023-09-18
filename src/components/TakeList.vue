@@ -7,19 +7,13 @@
         <button v-if="isShowFloatWin == 3" @click="addNewItemGit">确认</button>
         <button @click="isShowFloatWin = 0">取消</button>
     </div>
-    <div class="switchlist">
-        <button v-for="(item,index) in list.takeListList" :key="index" class="changeBtn" 
-            @click="changeTo(index)">
-                {{ item.listTitle }}
-        </button>
-        <button class="addBtn changeBtn" @click="addNewList">+ 新增</button>
-    </div>
-    <div>
+    <div class="takelistmodule switchlist">
         <select v-model="watchWhichList">
             <option v-for="(op,index) in list.takeListList" :key="index" :value="index">
                 {{ op.listTitle }}
             </option>
         </select>
+        <button class="addBtn changeBtn" @click="addNewList">+</button>
     </div>
     
 
@@ -167,7 +161,8 @@
                     this.list.takeListList.splice(e,1)
                     this.updateListToLocal()
                     //防止删除后列表为空
-                    this.whichList = 0               
+                    this.whichList = 0
+                    this.watchWhichList = 0          
                 }
             }
         },
@@ -320,13 +315,30 @@
         background-color: #3a8ee6;
     }
     .switchlist{
-        margin: 1em 0;
+        display: flex;
+        justify-content: center;
+    }
+    .switchlist select{
+        width: 90%;
+        height: 3em;
+        padding: .4em .8em;
+        border: 0;
+        border-radius: 5px;
+        line-height: 2em;
+        font-size: 1.2em;
+        font-weight: 800;
+    }
+    .switchlist select:focus{
+        outline: none;
     }
     .changeBtn{
         margin: 0.1em 0.2em;
     }
     .addBtn{
-        background-color: #c6eeff;
+        background-color: #eee;
+    }
+    .addBtn:hover{
+        background-color: #ccc;
     }
     button{
         border-radius: 8px;
@@ -359,7 +371,6 @@
         margin: 0.5em 0.2em;
     }
     .takelistshow{
-        background-color: #fff;
         color: #000;
         font-weight: 400;
     }
@@ -422,6 +433,7 @@
         padding: 0.5em 0.5em;
         border: 2px #cbcbcb solid;
         border-radius: 5px;
+        background-color: #fff;
     }
     .design{
         margin: 0.5em 0.2em;

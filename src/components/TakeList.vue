@@ -303,17 +303,7 @@
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     }
-    .window button{
-        border-radius: 4px;
-        margin: .5em .5em;
-        padding: .3em .8em;
-        font-weight: 500;
-        color: #fff;
-        background-color: #409eff;
-    }
-    .window button:hover {
-        background-color: #3a8ee6;
-    }
+    
     .switchlist{
         display: flex;
         justify-content: center;
@@ -330,40 +320,6 @@
     }
     .switchlist select:focus{
         outline: none;
-    }
-    .changeBtn{
-        margin: 0.1em 0.2em;
-    }
-    .addBtn{
-        background-color: #eee;
-    }
-    .addBtn:hover{
-        background-color: #ccc;
-    }
-    button{
-        border-radius: 8px;
-        border: 1px solid transparent;
-        padding: 0.6em 1.2em;
-        font-size: 1em;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: #f9f9f9;
-        cursor: pointer;
-        transition: background-color 0.25s;
-    }
-    button:hover {
-        /* border-color: #646cff; */
-        background-color: #ccc;
-    }
-    .mybtn{
-        color: #000;
-        border: 0px;
-        border-radius: 5px;
-        color: #fff;
-        transition: .1s;
-        margin: 0em 0.2em;
-        padding: 0.5em 1em;
-        font-size: 0.5em;
     }
     .takelisttitle{
         font-size: 1.3em;
@@ -393,6 +349,51 @@
     }
     .takeitem:hover .takeitembtnspan{
         display: inline-block;
+    }
+    
+    button{
+        border-radius: 8px;
+        border: 1px solid transparent;
+        padding: 0.6em 1.2em;
+        font-size: 1em;
+        font-weight: 500;
+        font-family: inherit;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        transition: background-color 0.25s;
+    }
+    button:hover {
+        /* border-color: #646cff; */
+        background-color: #ccc;
+    }
+    .mybtn{
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        transition: .1s;
+        margin: 0em 0.2em;
+        padding: 0.5em 1em;
+        font-size: 0.5em;
+    }
+    .window button{
+        border-radius: 4px;
+        margin: .5em .5em;
+        padding: .3em .8em;
+        font-weight: 500;
+        color: #fff;
+        background-color: #409eff;
+    }
+    .window button:hover {
+        background-color: #3a8ee6;
+    }
+    .changeBtn{
+        margin: 0.1em 0.2em;
+    }
+    .addBtn{
+        background-color: #eee;
+    }
+    .addBtn:hover{
+        background-color: #ccc;
     }
     .del{
         background-color: #f56c6c;

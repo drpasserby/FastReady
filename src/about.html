@@ -33,5 +33,31 @@
         <h2>🕒状态</h2>
         <p id="time"></p>
     </div>
+    <script>
+        var t1="2023/08/07  00:00:00"; //起始日期
+        var dateBegin = new Date(t1);
+        var time=document.getElementById("time");
+        function getnewtime(){
+        let dateEnd = new Date();//现在日期
+        let dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+        
+        let dayDiff  = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+        
+        let leave1   = dateDiff%(24*3600*1000) //计算天数后剩余的毫秒数
+        let hours    = (Array(2).join(0) + Math.floor(leave1/(3600*1000))).slice(-2)//计算出小时数
+        
+        let leave2   = leave1%(3600*1000) //计算小时数后剩余的毫秒数
+        let minutes  = (Array(2).join(0) + Math.floor(leave2/(60*1000))).slice(-2)//计算相差分钟数
+        
+        let leave3   = leave2%(60*1000) //计算分钟数后剩余的毫秒数
+        let seconds  = (Array(2).join(0) + Math.round(leave3/1000)).slice(-2)
+        
+        time.innerText=("已运行"+dayDiff+"天"+hours+"小时"+minutes+"分"+seconds+"秒");
+        console.log("+1s");
+        }
+        window.onload=function(){
+            setInterval("getnewtime()",1000);
+        }
+    </script>
 </body>
 </html>

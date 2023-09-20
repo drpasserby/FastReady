@@ -15,6 +15,7 @@ export default {
   data(){
         return{
             linkList:[
+              {name:'关于',url:'https://my.wulvxinchen.cn/fastready/about.html'},
               {name:'导航页',url:'https://wulvxinchen.cn/'},
               {name:'工具集',url:'https://my.wulvxinchen.cn/tools/'}
             ]

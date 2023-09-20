@@ -2,10 +2,10 @@
     <div class="window" v-if="isShowFloatWin != 0">
         <h3>{{ floatWinTitle }}</h3>
         <input v-model="floatWinInput" />
-        <button v-if="isShowFloatWin == 1" @click="editListNameGit">确认</button>
-        <button v-if="isShowFloatWin == 2" @click="addNewListGit">确认</button>
-        <button v-if="isShowFloatWin == 3" @click="addNewItemGit">确认</button>
-        <button @click="isShowFloatWin = 0">取消</button>
+        <button class="mybtn export" v-if="isShowFloatWin == 1" @click="editListNameGit">确认</button>
+        <button class="mybtn export" v-if="isShowFloatWin == 2" @click="addNewListGit">确认</button>
+        <button class="mybtn export" v-if="isShowFloatWin == 3" @click="addNewItemGit">确认</button>
+        <button class="mybtn export" @click="isShowFloatWin = 0">取消</button>
     </div>
     <div class="takelistmodule switchlist">
         <select v-model="watchWhichList">
@@ -13,7 +13,9 @@
                 {{ op.listTitle }}
             </option>
         </select>
-        <button class="addBtn changeBtn" @click="addNewList">+</button>
+        <button class="mybtn addBtn" @click="addNewList">
+            <strong>＋</strong>
+        </button>
     </div>
     
 
@@ -45,12 +47,12 @@
                 🧰添加物品
             </div>
             <span v-for="item in list.selectList" v-bind:key="item">
-                <button class="mybtn select"  @click="addItem(item)">
+                <button class="mybtn export"  @click="addItem(item)">
                     {{ item }}
                 </button>
             </span>
             <span>
-                <button class="mybtn select" @click="addNewItem()">
+                <button class="mybtn export" @click="addNewItem()">
                     <strong>＋</strong>
                 </button>
             </span>
@@ -137,7 +139,7 @@
         },
         //编辑列表按钮
         editListName:function(e){
-            this.openFloatWin('输入['+this.list.takeListList[e].listTitle+']的新名称',"1")
+            this.openFloatWin('输入列表['+this.list.takeListList[e].listTitle+']的新名称',"1")
         },
         //编辑列表提交
         editListNameGit:function(e){
@@ -303,7 +305,6 @@
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     }
-    
     .switchlist{
         display: flex;
         justify-content: center;
@@ -350,46 +351,19 @@
     .takeitem:hover .takeitembtnspan{
         display: inline-block;
     }
-    
-    button{
-        border-radius: 8px;
+    .mybtn{
+        border-radius: 5px;
         border: 1px solid transparent;
-        padding: 0.6em 1.2em;
+        color: #fff;
+        transition: .1s;
+        margin: .1em .2em;
+        padding: .5em 1em;
         font-size: 1em;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: #f9f9f9;
         cursor: pointer;
         transition: background-color 0.25s;
     }
-    button:hover {
-        /* border-color: #646cff; */
-        background-color: #ccc;
-    }
-    .mybtn{
-        border: 0px;
-        border-radius: 5px;
-        color: #fff;
-        transition: .1s;
-        margin: 0em 0.2em;
-        padding: 0.5em 1em;
-        font-size: 0.5em;
-    }
-    .window button{
-        border-radius: 4px;
-        margin: .5em .5em;
-        padding: .3em .8em;
-        font-weight: 500;
-        color: #fff;
-        background-color: #409eff;
-    }
-    .window button:hover {
-        background-color: #3a8ee6;
-    }
-    .changeBtn{
-        margin: 0.1em 0.2em;
-    }
     .addBtn{
+        color:#000;
         background-color: #eee;
     }
     .addBtn:hover{
@@ -418,16 +392,6 @@
     }
     .resetting:hover{
         background-color: #d89f2a;
-    }
-    .select{
-        margin: 0.2em 0.2em;
-        padding: 0.4em 0.8em;
-        font-size: 0.9em;
-        line-height: 2em;
-        background-color: #409eff;
-    }
-    .select:hover{
-        background-color: #3a8ee6;
     }
     .takelistmodule{
         margin: 0.5em 0;

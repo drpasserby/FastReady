@@ -305,6 +305,15 @@
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     }
+    .window input{
+        height: 1.5em;
+        margin: .4em .4em;
+        padding: .2em .6em;
+        border: 2px #000 solid;
+        border-radius: 5px;
+        font-size: 1.2em;
+        font-weight: 800;
+    }
     .switchlist{
         display: flex;
         justify-content: center;

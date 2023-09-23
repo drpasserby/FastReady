@@ -2,10 +2,12 @@
     <div class="window" v-if="isShowFloatWin != 0">
         <h3>{{ floatWinTitle }}</h3>
         <input v-model="floatWinInput" />
-        <button class="mybtn export" v-if="isShowFloatWin == 1" @click="editListNameGit">确认</button>
-        <button class="mybtn export" v-if="isShowFloatWin == 2" @click="addNewListGit">确认</button>
-        <button class="mybtn export" v-if="isShowFloatWin == 3" @click="addNewItemGit">确认</button>
-        <button class="mybtn export" @click="isShowFloatWin = 0">取消</button>
+        <div class="windowBtn">
+            <button class="mybtn export" v-if="isShowFloatWin == 1" @click="editListNameGit">确认</button>
+            <button class="mybtn export" v-if="isShowFloatWin == 2" @click="addNewListGit">确认</button>
+            <button class="mybtn export" v-if="isShowFloatWin == 3" @click="addNewItemGit">确认</button>
+            <button class="mybtn export" @click="isShowFloatWin = 0">取消</button>
+        </div>
     </div>
     <div class="takelistmodule switchlist">
         <select v-model="watchWhichList">
@@ -313,6 +315,13 @@
         border-radius: 5px;
         font-size: 1.2em;
         font-weight: 800;
+    }
+    .windowBtn{
+        display: flex;
+        justify-content: center;
+    }
+    .windowBtn .mybtn{
+        margin: .2em .8em;
     }
     .switchlist{
         display: flex;

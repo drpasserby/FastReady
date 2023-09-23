@@ -80,11 +80,9 @@
             </button>
         </div>
     </div>
-    <div class="shotPicData" v-if="shotPicData != null">
-        <button class="mybtn del" style="margin-bottom: 1em;" @click="closeScreenShots()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        <span><strong>&nbsp;长按保存</strong></span>
+    <div class="takelistmodule" v-if="shotPicData != null">
+        <button class="mybtn del" style="margin-bottom: 1em;" @click="closeScreenShots()">取消</button>
+        <span><strong>&nbsp;&nbsp;长按或右键可保存列表图片</strong></span>
         <br>
         <img :src="shotPicData" alt="保存截图" class="showPicClass"/>
     </div>

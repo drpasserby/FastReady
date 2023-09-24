@@ -81,8 +81,8 @@
         </div>
     </div>
     <div class="takelistmodule" v-if="shotPicData != null">
+        <button class="mybtn export" style="margin-bottom: 1em;" @click="downScreenShots()">保存</button>
         <button class="mybtn del" style="margin-bottom: 1em;" @click="closeScreenShots()">取消</button>
-        <span><strong>&nbsp;&nbsp;长按或右键可保存列表图片</strong></span>
         <br>
         <img :src="shotPicData" alt="保存截图" class="showPicClass"/>
     </div>
@@ -215,6 +215,22 @@
                     this.shotPicData = canvas.toDataURL('image/png')
                 });
             }, 5);
+        },
+        //保存截图
+        downScreenShots(){
+            let image = new Image()
+            image.setAttribute("crossOrigin", "anonymous")
+            image.onload = function() {
+                let picCanvas = document.createElement("canvas")
+                picCanvas.width = image.width
+                picCanvas.height = image.height
+                picCanvas.getContext("2d").drawImage(image, 0, 0, image.width, image.height)
+                let aPic = document.createElement("a")
+                aPic.download =  '待办列表' 
+                aPic.href = picCanvas.toDataURL("image/png")
+                aPic.dispatchEvent(new MouseEvent("click"))
+            };
+            image.src = this.shotPicData
         },
         //关闭截图
         closeScreenShots:function(){

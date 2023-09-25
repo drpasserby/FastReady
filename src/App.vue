@@ -1,14 +1,14 @@
-<script setup>
-import MainTitle from './components/MainTitle.vue'
-import TakeList from './components/TakeList.vue'
-</script>
-
 <template>
   <div class="mainapp">
     <MainTitle />
     <TakeList />
   </div>
 </template>
+
+<script setup>
+import MainTitle from './components/MainTitle.vue'
+import TakeList from './components/TakeList.vue'
+</script>
 
 <style scoped>
 .mainapp{

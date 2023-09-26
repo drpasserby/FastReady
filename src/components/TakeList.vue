@@ -6,6 +6,7 @@
             <button class="mybtn export" v-if="isShowFloatWin == 1" @click="editListNameGit">确认</button>
             <button class="mybtn export" v-if="isShowFloatWin == 2" @click="addNewListGit">确认</button>
             <button class="mybtn export" v-if="isShowFloatWin == 3" @click="addNewItemGit">确认</button>
+            <button class="mybtn export" v-if="isShowFloatWin == 4" @click="editItemGit">确认</button>
             <button class="mybtn export" @click="isShowFloatWin = 0">取消</button>
         </div>
     </div>
@@ -58,6 +59,11 @@
                     <strong>＋</strong>
                 </button>
             </span>
+            <span>
+                <button class="mybtn edit" @click="test()">
+                    <svg viewBox="0 0 24 24" width="17" height="17" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                </button>
+            </span>
         </div>
         <div class="takelistmodule">
             <div class="takelisttitle">
@@ -104,6 +110,7 @@
             list:{},
             watchWhichList:0,
             whichList:0,
+            whichItem:0,
             shotPicData: null,
             isDesign:false,
 
@@ -175,7 +182,20 @@
         },
         //编辑物品
         editItem:function(e){
-            console.log(e)
+            this.whichItem = e
+            this.openFloatWin('编辑物品['+this.list.takeListList[this.whichList].listItem[e]+']',"4")
+        },
+        //编辑物品提交
+        editItemGit:function(){
+            if(this.floatWinInput != ''){
+                this.list.takeListList[this.whichList].listItem[this.whichItem] = this.floatWinInput
+                this.isShowFloatWin = 0
+                this.whichItem = 0
+                this.updateListToLocal()
+            }
+            else{
+                alert('输入为空,请输入.')
+            }
         },
         //添加自定义新物品按钮
         addNewItem:function(){

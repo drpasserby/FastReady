@@ -226,6 +226,17 @@
         //编辑选择列表
         editSelectList:function(){
             this.openFloatWin('编辑选择列表',"5")
+            this.floatWinInput = this.list.selectList.join(',')
+        },
+        //编辑选择列表提交
+        editSelectListGit:function(){
+            if(this.floatWinInput != ''){
+                this.list.selectList = this.floatWinInput.split(',')
+                this.isShowFloatWin = 0
+            }
+            else{
+                alert('输入为空,请输入.')
+            }
         },
         //截图列表
         listScreenShots:function(){
@@ -353,7 +364,6 @@
         border: 2px #000 solid;
         border-radius: 5px;
         font-size: 1.2em;
-        font-weight: 800;
     }
     .windowBtn{
         display: flex;

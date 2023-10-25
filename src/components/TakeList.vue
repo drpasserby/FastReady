@@ -225,7 +225,7 @@
         },
         //编辑选择列表
         editSelectList:function(){
-            this.openFloatWin('编辑选择列表',"5")
+            this.openFloatWin('编辑选择列表(逗号隔开)',"5")
             this.floatWinInput = this.list.selectList.join(',')
         },
         //编辑选择列表提交
@@ -233,6 +233,7 @@
             if(this.floatWinInput != ''){
                 this.list.selectList = this.floatWinInput.split(',')
                 this.isShowFloatWin = 0
+                this.updateListToLocal()
             }
             else{
                 alert('输入为空,请输入.')
